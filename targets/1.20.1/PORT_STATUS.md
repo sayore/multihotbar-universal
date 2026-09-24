@@ -3,7 +3,7 @@
 This target shares the MultiHotbar interaction contract with 1.21.1.
 
 - Fabric API: `0.92.6+1.20.1`
-- NeoForge selector: `47.1.+` (resolved online during build; lock before release)
+- Forge: `47.4.23`
 - Java: `17`
 - Input semantics: identical
 - Inventory controller geometry: identical
@@ -11,4 +11,4 @@ This target shares the MultiHotbar interaction contract with 1.21.1.
 
 ## API family
 
-`legacy-nbt`: storage/packet/item hooks need the 1.20 compatibility adapter before release builds.
+`legacy-nbt`: the storage, packet, and item hooks use the 1.20.1 APIs. Both Fabric and Forge release JARs build at version `0.2.2`.

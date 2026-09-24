@@ -63,7 +63,7 @@ There is no account/auth layer. Multiplayer authorization is Minecraft's existin
 
 ## Loaders
 
-`common/` contains all state, item behavior, packet DTO, server swap logic and client mixin. `fabric/` and `neoforge/` contain only registration and network transport glue.
+`common/` contains item state, server swap logic, client preview state and renderer, and the client mixin. `fabric/` and `neoforge/` contain registration, HUD hooks, and network transport glue.
 
 ## Known v0.1 tradeoff
 

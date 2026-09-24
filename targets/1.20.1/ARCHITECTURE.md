@@ -1,4 +1,4 @@
-# MultiHotbar 1.21.1 — architecture
+# MultiHotbar 1.20.1 — architecture
 
 ## Inventory contract
 
@@ -63,7 +63,7 @@ There is no account/auth layer. Multiplayer authorization is Minecraft's existin
 
 ## Loaders
 
-`common/` contains all state, item behavior, packet DTO, server swap logic and client mixin. `fabric/` and `neoforge/` contain only registration and network transport glue.
+`common/` contains the NBT-backed item state, item behavior, packet DTO, server swap logic, client preview, and client mixin. `fabric/` and `forge/` contain registration, HUD hooks, and network transport glue.
 
 ## Known v0.1 tradeoff
 

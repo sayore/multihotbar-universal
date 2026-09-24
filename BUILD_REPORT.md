@@ -31,11 +31,11 @@ The preview lasts 720 ms, with a 55 ms fade-in and a 240 ms fade-out. `./test-pr
 - P2: Corrected pack compatibility metadata, 1.20.x recipe paths and result fields, 1.21.4+ item model definitions, and Java 17 Mixin compatibility for 1.20.x.
 - P1: The server now rejects select packets while a container menu is open; restoration packets remain accepted.
 - P2: The matrix continues after a failed target, and artifact collection and `doctor.sh` identify only JARs for the declared project version.
+- P2: Replaced stale target-local README instructions and corrected version-specific architecture and 1.20.1 port notes for the public release.
 
 ## Remaining findings
 
 - **P2 CONFIRMED — duplicate sequence state machines.** `shared/src/main/java/.../core/PressChain.java` and each target's `client/PressChain.java` implement the same behavior. Both have tests, but production uses the target copies. Classification: `OVERLAPPING`. Consolidation should be deliberate so target builds remain standalone.
-- **P2 CONFIRMED — target-local documentation drift.** Several generated `targets/<version>/README.md` files still describe 1.21.1 and Java 21. The 1.20.1 README, root README, and `support.json` now describe their actual targets.
 - **P2 CONFIRMED — discovery tools unavailable in this environment.** The required Aktenordner and Agentwerk CLI checks fail before execution because their local Node packages `@akte/aktenordner-core` and `@akte/core` are missing. No new platform capability was introduced by this mod repair.
 
 ## Verification and limits
