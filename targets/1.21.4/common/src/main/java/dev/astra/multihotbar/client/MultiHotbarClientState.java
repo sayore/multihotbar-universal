@@ -13,7 +13,18 @@ public final class MultiHotbarClientState {
     private MultiHotbarClientState() {}
 
     public static int press(int hotbarSlot, int depth) {
-        return CHAIN.press(hotbarSlot, System.nanoTime(), depth);
+        long now = System.nanoTime();
+        boolean previewActive = preview != null && preview.hotbarSlot() == hotbarSlot
+                && (now - preview.shownAt()) < PreviewState.DURATION_NANOS;
+        return CHAIN.press(hotbarSlot, now, depth, previewActive);
+    }
+
+    public static void keepAlive(int slot) {
+        long now = System.nanoTime();
+        if (preview != null && preview.hotbarSlot() == slot) {
+            preview.refresh(now);
+            CHAIN.refresh(slot, now);
+        }
     }
 
     public static void showSelection(int slot, int index, ItemStack controller, ItemStack hand) {

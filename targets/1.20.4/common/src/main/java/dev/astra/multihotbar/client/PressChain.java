@@ -12,14 +12,25 @@ public final class PressChain {
         this.windowNanos = windowMillis * 1_000_000L;
     }
 
-    public int press(int pressedSlot, long nowNanos, int depth) {
+    public int press(int pressedSlot, long nowNanos, int depth, boolean forceChain) {
         if (depth < 1) depth = 1;
-        boolean chained = pressedSlot == slot && lastPress != Long.MIN_VALUE
-                && nowNanos >= lastPress && nowNanos - lastPress <= windowNanos;
+        boolean chained = (forceChain && pressedSlot == slot)
+                || (pressedSlot == slot && lastPress != Long.MIN_VALUE
+                && nowNanos >= lastPress && nowNanos - lastPress <= windowNanos);
         index = chained ? Math.min(index + 1, depth - 1) : 0;
         slot = pressedSlot;
         lastPress = nowNanos;
         return index;
+    }
+
+    public int press(int pressedSlot, long nowNanos, int depth) {
+        return press(pressedSlot, nowNanos, depth, false);
+    }
+
+    public void refresh(int pressedSlot, long nowNanos) {
+        if (pressedSlot == slot && lastPress != Long.MIN_VALUE) {
+            lastPress = nowNanos;
+        }
     }
 
     public void reset() {

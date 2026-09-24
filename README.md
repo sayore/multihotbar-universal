@@ -24,11 +24,11 @@ MultiHotbar turns the inventory slot **directly above each hotbar slot** into a 
 | `11` | Pickaxe | Select the first alternate |
 | `111` | Axe | Select the second alternate |
 
-The same rhythm works with `2` through `9`. Each tap restarts a **200 ms** chain window. Choose another hotbar number and that slot starts its own chain from the beginning.
+The same rhythm works with `2` through `9`. Each tap restarts a **600 ms** chain window. Holding the key keeps the preview steady and delays the timer. Choose another hotbar number and that slot starts its own chain from the beginning.
 
 ### Glance, then go
 
-When a valid MultiHotbar item is selected, a tiny vertical slice appears **over that exact hotbar slot**. It shows the nearest configured item before and after the selection when they exist. The active icon is larger and brighter; the others are smaller and dimmer. The slice lasts **720 ms**, fades away, and refreshes instantly on another tap.
+When a valid MultiHotbar item is selected, a vertical preview appears **over that exact hotbar slot**. It shows all configured items in the bundle, with the active item enlarged and highlighted. Holding the slot key keeps the preview open, and subsequent taps cycle through the sequence as long as the preview is active. The preview stays visible for **600 ms** before a **240 ms** fade-out (840 ms total), refreshing on every tap.
 
 The illustration above shows the idea. The in-game preview renders **item icons only**. There is no permanent panel, menu, or new gameplay keybind.
 

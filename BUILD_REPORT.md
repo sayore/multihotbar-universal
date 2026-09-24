@@ -16,9 +16,9 @@ The 14 deliverable JARs are in `dist/`. Each contains compiled classes, a loader
 
 ## Quick-select preview
 
-The client reconstructs a short-lived ordered item snapshot from the controller and paired hotbar slot. Repeated presses reuse that snapshot so the preview updates immediately, including before the server's inventory update arrives. Empty target positions do not create a preview. The preview is cleared on screen opening and never changes the selection packet or server swap logic. Fabric uses its HUD callback on older targets and a hotbar-adjacent HUD element on 1.21.8+; NeoForge and Forge use client HUD events. The rendering contains item icons only, with no persistent panel or new keybind.
+The client reconstructs a short-lived ordered item snapshot from the controller and paired hotbar slot. Repeated presses reuse that snapshot so the preview updates immediately, including before the server's inventory update arrives. Empty target positions do not create a preview. The preview is cleared on screen opening and never changes the selection packet or server swap logic. Fabric uses its HUD callback on older targets and a hotbar-adjacent HUD element on 1.21.8+; NeoForge and Forge use client HUD events. The rendering displays all configured items in the bundle vertically above the slot with the selected item highlighted and enlarged.
 
-The preview lasts 720 ms, with a 55 ms fade-in and a 240 ms fade-out. `./test-preview.sh` exercises selection order, adjacent items, an intervening inventory update, slot change, empty target, reset, and the fade timeline on all seven target source variants.
+The preview stays visible for 600 ms before a 240 ms fade-out (840 ms total), with a 55 ms fade-in. Holding the slot key keeps the preview steady, and subsequent taps continue cycling as long as the preview is active. `./test-preview.sh` exercises selection order, adjacent items, an intervening inventory update, slot change, empty target, reset, and the fade timeline on all seven target source variants.
 
 ## Confirmed fixes
 

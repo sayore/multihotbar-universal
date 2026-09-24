@@ -32,6 +32,9 @@ abstract class MinecraftMixin {
                 MultiHotbarClientState.showSelection(slot, index, controller, mc.player.getInventory().getItem(slot));
                 ClientNetworkBridge.send(ActionPayload.select(slot, index));
             }
+            if (key.isDown() && mc.player.getInventory().getSelectedSlot() == slot) {
+                MultiHotbarClientState.keepAlive(slot);
+            }
         }
     }
 

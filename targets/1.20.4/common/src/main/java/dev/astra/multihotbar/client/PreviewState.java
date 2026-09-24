@@ -7,14 +7,14 @@ import net.minecraft.world.item.ItemStack;
 
 /** Short-lived, client-owned snapshot of one logical hotbar group. */
 public final class PreviewState {
-    public static final long DURATION_NANOS = 720_000_000L;
+    public static final long DURATION_NANOS = 840_000_000L;
     private static final long FADE_IN_NANOS = 55_000_000L;
     private static final long FADE_OUT_NANOS = 240_000_000L;
 
     private final int hotbarSlot;
     private final int selectedIndex;
     private final List<ItemStack> items;
-    private final long shownAt;
+    private long shownAt;
 
     public PreviewState(int hotbarSlot, int selectedIndex, List<ItemStack> items, long shownAt) {
         if (hotbarSlot < 0 || hotbarSlot >= MultiHotbar.HOTBAR_SIZE
@@ -27,6 +27,10 @@ public final class PreviewState {
         this.selectedIndex = selectedIndex;
         this.items = List.copyOf(snapshot);
         this.shownAt = shownAt;
+    }
+
+    public void refresh(long now) {
+        this.shownAt = now;
     }
 
     public int hotbarSlot() { return hotbarSlot; }

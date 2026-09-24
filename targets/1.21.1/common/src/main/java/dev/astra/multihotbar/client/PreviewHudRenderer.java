@@ -1,5 +1,6 @@
 package dev.astra.multihotbar.client;
 
+import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
@@ -16,13 +17,40 @@ public final class PreviewHudRenderer {
         float alpha = state.alphaAt(System.nanoTime());
         if (alpha <= 0) return;
 
+        List<ItemStack> items = state.items();
+        int total = items.size();
+        int count = 0;
+        for (int i = 0; i < total; i++) {
+            if (!items.get(i).isEmpty()) count = i + 1;
+        }
+        if (count == 0) return;
+
         int centerX = graphics.guiWidth() / 2 - 80 + state.hotbarSlot() * 20;
-        int centerY = graphics.guiHeight() - 56;
-        int previous = state.previousIndex();
-        int next = state.nextIndex();
-        if (previous >= 0) drawIcon(graphics, state.items().get(previous), centerX, centerY - 22, 0.78f, alpha * 0.68f);
-        drawIcon(graphics, state.selectedItem(), centerX, centerY, 1.2f, alpha);
-        if (next >= 0) drawIcon(graphics, state.items().get(next), centerX, centerY + 22, 0.78f, alpha * 0.68f);
+        int spacing = 20;
+        int bottomY = graphics.guiHeight() - 36;
+
+        for (int i = 0; i < count; i++) {
+            ItemStack item = items.get(i);
+            if (item.isEmpty()) continue;
+            int y = bottomY - (count - 1 - i) * spacing;
+            boolean selected = (i == state.selectedIndex());
+            if (selected) {
+                int bgAlpha = Math.round(alpha * 160f);
+                if (bgAlpha > 0) {
+                    int color = (bgAlpha << 24) | 0x141824;
+                    graphics.fill(centerX - 11, y - 11, centerX + 11, y + 11, color);
+                    int borderAlpha = Math.round(alpha * 220f);
+                    int borderColor = (borderAlpha << 24) | 0x68dcca;
+                    graphics.fill(centerX - 11, y - 11, centerX + 11, y - 10, borderColor);
+                    graphics.fill(centerX - 11, y + 10, centerX + 11, y + 11, borderColor);
+                    graphics.fill(centerX - 11, y - 10, centerX - 10, y + 10, borderColor);
+                    graphics.fill(centerX + 10, y - 10, centerX + 11, y + 10, borderColor);
+                }
+            }
+            float scale = selected ? 1.2f : 0.8f;
+            float opacity = selected ? alpha : alpha * 0.65f;
+            drawIcon(graphics, item, centerX, y, scale, opacity);
+        }
     }
 
     private static void drawIcon(GuiGraphics graphics, ItemStack item, int centerX, int centerY,

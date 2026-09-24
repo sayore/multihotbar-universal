@@ -46,9 +46,9 @@ public final class PreviewAcceptanceTest {
         PreviewState timing = new PreviewState(0, 0, timingItems, 1_000_000_000L);
         near(0, timing.alphaAt(1_000_000_000L));
         near(1, timing.alphaAt(1_055_000_000L));
-        near(1, timing.alphaAt(1_480_000_000L));
-        near(0.5f, timing.alphaAt(1_600_000_000L));
-        near(0, timing.alphaAt(1_720_000_000L));
+        near(1, timing.alphaAt(1_600_000_000L));
+        near(0.5f, timing.alphaAt(1_720_000_000L));
+        near(0, timing.alphaAt(1_840_000_000L));
 
         MultiHotbarClientState.showSelection(1, 0, other, item("hoe"));
         MultiHotbarClientState.reset(); // screen opening uses this path
