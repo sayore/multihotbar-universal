@@ -1,0 +1,44 @@
+name: build-matrix
+on: [push, pull_request]
+jobs:
+  preview-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: ./test-core.sh && ./test-preview.sh
+  build:
+    needs: preview-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {mc: '1.20.1', loader: fabric, java: '17'}
+          - {mc: '1.20.1', loader: forge, java: '17'}
+          - {mc: '1.20.4', loader: fabric, java: '17'}
+          - {mc: '1.20.4', loader: neoforge, java: '17'}
+          - {mc: '1.21.1', loader: fabric, java: '21'}
+          - {mc: '1.21.1', loader: neoforge, java: '21'}
+          - {mc: '1.21.4', loader: fabric, java: '21'}
+          - {mc: '1.21.4', loader: neoforge, java: '21'}
+          - {mc: '1.21.5', loader: fabric, java: '21'}
+          - {mc: '1.21.5', loader: neoforge, java: '21'}
+          - {mc: '1.21.8', loader: fabric, java: '21'}
+          - {mc: '1.21.8', loader: neoforge, java: '21'}
+          - {mc: '1.21.11', loader: fabric, java: '21'}
+          - {mc: '1.21.11', loader: neoforge, java: '21'}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - run: ./build-matrix.sh ${{ matrix.mc }} ${{ matrix.loader }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multihotbar-${{ matrix.mc }}-${{ matrix.loader }}
+          path: targets/${{ matrix.mc }}/${{ matrix.loader }}/build/libs/*.jar

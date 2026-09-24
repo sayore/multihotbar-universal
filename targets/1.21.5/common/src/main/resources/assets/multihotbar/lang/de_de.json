@@ -1,0 +1,6 @@
+{
+  "item.multihotbar.hotbar_bundle": "Hotbar-Bündel",
+  "item.multihotbar.hotbar_bundle.hint": "Direkt über einen Hotbar-Slot legen",
+  "item.multihotbar.hotbar_bundle.primary": "Item im zugehörigen Hotbar-Slot",
+  "item.multihotbar.hotbar_bundle.active": "aktives Item (gerade in der Hotbar)"
+}

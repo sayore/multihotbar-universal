@@ -1,0 +1,11 @@
+{
+  "targets": [
+    {"minecraft":"1.20.1","fabric":true,"forge":true,"neoforge":false,"java":17,"family":"legacy-nbt"},
+    {"minecraft":"1.20.4","fabric":true,"forge":false,"neoforge":true,"java":17,"family":"legacy-nbt"},
+    {"minecraft":"1.21.1","fabric":true,"forge":false,"neoforge":true,"java":21,"family":"components","status":"canonical"},
+    {"minecraft":"1.21.4","fabric":true,"forge":false,"neoforge":true,"java":21,"family":"components"},
+    {"minecraft":"1.21.5","fabric":true,"forge":false,"neoforge":true,"java":21,"family":"components"},
+    {"minecraft":"1.21.8","fabric":true,"forge":false,"neoforge":true,"java":21,"family":"components"},
+    {"minecraft":"1.21.11","fabric":true,"forge":false,"neoforge":true,"java":21,"family":"components"}
+  ]
+}

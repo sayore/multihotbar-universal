@@ -1,0 +1,10 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version '1.17-SNAPSHOT' apply false
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+        maven { name = 'ParchmentMC'; url = uri('https://maven.parchmentmc.org'); content { includeGroup('org.parchmentmc.data') } }
+    }
+}

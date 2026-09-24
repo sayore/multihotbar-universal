@@ -1,0 +1,32 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.fabricmc.fabric-loom-remap'
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+    mappings loom.officialMojangMappings()
+    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
+}
+
+loom {
+    mixin { defaultRefmapName.set("${mod_id}.refmap.json") }
+    runs {
+        client { client(); runDirectory.set(layout.projectDirectory.dir('run')) }
+        server { server(); runDirectory.set(layout.projectDirectory.dir('run-server')) }
+    }
+}
+
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements','runtimeElements','sourcesElements','modCompileClasspath'].each { v ->
+    configurations.named(v) { attributes { attribute(loaderAttribute, 'fabric') } }
+}
+loom.remapConfigurations.configureEach {
+    configurations.named(it.name) { attributes { attribute(loaderAttribute, 'fabric') } }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { v ->
+        configurations.named(v) { attributes { attribute(loaderAttribute, 'fabric') } }
+    }
+}

@@ -1,0 +1,13 @@
+.gradle/
+.gradle-bootstrap/
+**/.gradle/
+**/.gradle-bootstrap/
+**/build/
+**/run/
+**/run-server/
+**/run-data/
+.serena/
+.idea/
+*.iml
+*.log
+dist/

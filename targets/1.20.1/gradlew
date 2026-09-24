@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+VER=9.5.1
+DIR="$ROOT/.gradle-bootstrap/gradle-$VER"
+ZIP="$ROOT/.gradle-bootstrap/gradle-$VER-bin.zip"
+if command -v gradle >/dev/null 2>&1; then exec gradle "$@"; fi
+if [ ! -x "$DIR/bin/gradle" ]; then
+  mkdir -p "$ROOT/.gradle-bootstrap"
+  URL="https://services.gradle.org/distributions/gradle-$VER-bin.zip"
+  if command -v curl >/dev/null 2>&1; then curl -fL "$URL" -o "$ZIP"
+  elif command -v wget >/dev/null 2>&1; then wget -O "$ZIP" "$URL"
+  else python3 - "$URL" "$ZIP" <<'PY'
+import sys, urllib.request
+urllib.request.urlretrieve(sys.argv[1], sys.argv[2])
+PY
+  fi
+  python3 - "$ZIP" "$ROOT/.gradle-bootstrap" <<'PY'
+import sys, zipfile
+with zipfile.ZipFile(sys.argv[1]) as z: z.extractall(sys.argv[2])
+PY
+fi
+exec "$DIR/bin/gradle" "$@"

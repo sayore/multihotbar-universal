@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.astra.multihotbar.mixin",
+  "refmap": "multihotbar.refmap.json",
+  "compatibilityLevel": "JAVA_17",
+  "client": ["client.MinecraftMixin"],
+  "injectors": { "defaultRequire": 1 }
+}

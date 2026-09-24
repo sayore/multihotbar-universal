@@ -1,0 +1,44 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+group = 'dev.astra.multihotbar'
+version = '0.2.2'
+base.archivesName = 'multihotbar-forge-1.20.1'
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client { workingDirectory project.file('run'); mods { multihotbar { source sourceSets.main } } }
+        server { workingDirectory project.file('run-server'); args '--nogui'; mods { multihotbar { source sourceSets.main } } }
+    }
+}
+
+sourceSets.main {
+    java.srcDir '../common/src/main/java'
+    resources.srcDir '../common/src/main/resources'
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.23'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+mixin {
+    add sourceSets.main, 'multihotbar.refmap.json'
+    config 'multihotbar.forge.mixins.json'
+}
+
+tasks.named('processResources', ProcessResources) {
+    def props = [version: project.version, mod_id: 'multihotbar', mod_name: 'MultiHotbar',
+                 mod_author: 'Astra', license: 'MIT', description: 'Bundle-backed hotbar depth',
+                 minecraft_version_range: '[1.20.1,1.20.2)', forge_version_range: '[47.4.23,)',
+                 loader_version_range: '[47,)']
+    inputs.properties props
+    filesMatching('META-INF/mods.toml') { expand props }
+}
+
+tasks.named('jar', Jar) { finalizedBy 'reobfJar' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }

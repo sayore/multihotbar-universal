@@ -1,0 +1,6 @@
+{
+  "item.multihotbar.hotbar_bundle": "Hotbar Bundle",
+  "item.multihotbar.hotbar_bundle.hint": "Place directly above a hotbar slot",
+  "item.multihotbar.hotbar_bundle.primary": "paired hotbar item",
+  "item.multihotbar.hotbar_bundle.active": "active item (currently in hotbar)"
+}

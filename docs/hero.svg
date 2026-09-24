@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" role="img" aria-labelledby="title description">
+  <title id="title">MultiHotbar Quick Select</title>
+  <desc id="description">A compact vertical item preview appears above the first slot of a nine-slot hotbar.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#1a1740"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#73f4d1"/>
+      <stop offset="1" stop-color="#7b8cff"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ffffff" stroke-opacity=".035" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="360" rx="24" fill="url(#background)"/>
+  <rect width="1000" height="360" rx="24" fill="url(#grid)"/>
+  <circle cx="163" cy="169" r="96" fill="#59d9d2" opacity=".12" filter="url(#glow)"/>
+  <circle cx="163" cy="169" r="53" fill="#9b8dff" opacity=".15" filter="url(#glow)"/>
+
+  <!-- Three item silhouettes form the preview; no panel surrounds them. -->
+  <g transform="translate(163 82) rotate(42)" stroke="#a9b8d4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".68">
+    <path d="M 0 -19 L 0 14 M -8 -18 L 0 -27 L 8 -18 M -7 17 L 7 17"/>
+  </g>
+  <g transform="translate(163 145) rotate(-38)" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 0 -2 L 0 34 M -27 -15 Q 0 -30 27 -15 M -27 -15 L -21 -8 M 27 -15 L 21 -8"/>
+  </g>
+  <g transform="translate(163 208) rotate(40)" stroke="#a9b8d4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".68">
+    <path d="M 0 -17 L 0 21 M -13 -20 L 13 -20 L 13 -4 L -13 -4 Z"/>
+  </g>
+  <path d="M 162 242 L 162 256" stroke="#77e8d9" stroke-opacity=".55" stroke-width="2" stroke-dasharray="3 4"/>
+
+  <!-- Nine compact vanilla-inspired slots. -->
+  <g fill="#202b49" stroke="#7085ad" stroke-opacity=".45" stroke-width="2">
+    <rect x="140" y="264" width="46" height="46" rx="8" fill="#30456a" stroke="#7ae6dc"/>
+    <rect x="192" y="264" width="46" height="46" rx="8"/>
+    <rect x="244" y="264" width="46" height="46" rx="8"/>
+    <rect x="296" y="264" width="46" height="46" rx="8"/>
+    <rect x="348" y="264" width="46" height="46" rx="8"/>
+    <rect x="400" y="264" width="46" height="46" rx="8"/>
+    <rect x="452" y="264" width="46" height="46" rx="8"/>
+    <rect x="504" y="264" width="46" height="46" rx="8"/>
+    <rect x="556" y="264" width="46" height="46" rx="8"/>
+  </g>
+  <g fill="#9daece" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15" text-anchor="middle">
+    <text x="163" y="294" fill="#b4fff1">1</text>
+    <text x="215" y="294">2</text><text x="267" y="294">3</text>
+    <text x="319" y="294">4</text><text x="371" y="294">5</text>
+    <text x="423" y="294">6</text><text x="475" y="294">7</text>
+    <text x="527" y="294">8</text><text x="579" y="294">9</text>
+  </g>
+
+  <text x="390" y="104" fill="#ffffff" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800" font-size="55" letter-spacing="-2">MultiHotbar</text>
+  <text x="393" y="142" fill="#b8c7e7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22">One hotbar. Nine tool chains. No extra keys.</text>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17" font-weight="700">
+    <rect x="392" y="174" width="85" height="39" rx="10" fill="#274e58"/>
+    <rect x="488" y="174" width="85" height="39" rx="10" fill="#393c68"/>
+    <rect x="584" y="174" width="85" height="39" rx="10" fill="#393c68"/>
+    <text x="421" y="199" fill="#b4fff1">1</text>
+    <text x="507" y="199" fill="#ced4ff">11</text>
+    <text x="598" y="199" fill="#ced4ff">111</text>
+  </g>
+  <text x="393" y="247" fill="#8296bb" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16">Tap · glance · keep playing</text>
+</svg>
